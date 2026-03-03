@@ -1,0 +1,241 @@
+{
+  "info": {
+    "_postman_id": "e1216dd0-0c7e-42e5-9752-59ff4979ab16",
+    "name": "M-Cart",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50573412",
+    "_collection_link": "https://go.postman.co/collection/50573412-e1216dd0-0c7e-42e5-9752-59ff4979ab16?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "1. Register User",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"kelvin\",\r\n  \"email\": \"kelvin@gmail.com\",\r\n  \"password\": \"kelvin123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/users/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "users",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2.Login User",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"kelvin@gmail.com\",\r\n  \"password\": \"kelvin123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/users/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "users",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3.Create Product",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "Fanta Orange",
+              "type": "text",
+              "uuid": "aea3c665-52fd-4503-a30d-a0b8076b8d7f"
+            },
+            {
+              "key": "price",
+              "value": "800",
+              "type": "text",
+              "uuid": "1cde60a0-11e6-4b83-bce9-3578702de4eb"
+            },
+            {
+              "key": "category",
+              "value": "Beverages",
+              "type": "text",
+              "uuid": "1bedde31-164e-43cf-9481-9222e46fb7db"
+            },
+            {
+              "key": "stock",
+              "value": "50",
+              "type": "text",
+              "uuid": "4c0d1463-55a1-47f1-97a3-243362e4437e"
+            },
+            {
+              "key": "image",
+              "type": "file",
+              "uuid": "ec116364-9cb1-41d9-b05b-b587816d7981",
+              "src": "/C:/Users/USER/Downloads/Fanta Orange.png"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4.Get All Products",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5.Get Single Product",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/products/69a7677a8b9805a3b8a99a3d",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "products",
+            "69a7677a8b9805a3b8a99a3d"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6.Update Product",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "price",
+              "value": "1000",
+              "type": "text",
+              "uuid": "97d62c02-64ed-4e63-ab89-6aea53e0e5f8"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/products/69a7677a8b9805a3b8a99a3d",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "products",
+            "69a7677a8b9805a3b8a99a3d"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7.Delete Product",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/products/69a7677a8b9805a3b8a99a3d",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "products",
+            "69a7677a8b9805a3b8a99a3d"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
