@@ -2,7 +2,7 @@
 
 **New Generation Academy | Web Development - Assignment 02**
 **Instructors:** Eric Tuyishimire & Emmanuel Niyongabo
-**Developer:** Levi
+**Developer:** Malvyn
 
 ## 📝 Project Description
 M-Cart is a full-stack Supermarket Application dashboard. This assignment is split into two parts: a backend REST API and a frontend UI. The project successfully implements fully functional Products CRUD operations using Node.js, Express, and MongoDB, alongside a responsive, premium frontend interface built with HTML, Tailwind CSS, and the vanilla JavaScript Fetch API. 
