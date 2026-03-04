@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+ml lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M-Cart Admin Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #F8FAFC; /* Softer, premium gray background */
-        }
-    </style>
+    <style>body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }</style>
 </head>
 <body class="text-slate-800 antialiased">
 
@@ -27,27 +21,31 @@
 
     <div class="container mx-auto px-6 max-w-7xl">
         
-        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 mb-10">
-            <div class="mb-6">
-                <h2 class="text-xl font-bold text-slate-800">Add New Product</h2>
-                <p class="text-sm text-slate-500 mt-1">Fill out the details below to add items to your inventory.</p>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 mb-10 transition-all duration-300" id="formContainer">
+            <div class="mb-6 flex justify-between items-start">
+                <div>
+                    <h2 id="formTitle" class="text-xl font-bold text-slate-800">Add New Product</h2>
+                    <p id="formSubtitle" class="text-sm text-slate-500 mt-1">Fill out the details below to add items to your inventory.</p>
+                </div>
+                <button type="button" id="cancelEditBtn" class="hidden text-sm font-semibold text-slate-500 hover:text-red-500 bg-slate-100 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-colors">
+                    ✕ Cancel Edit
+                </button>
             </div>
             
             <form id="productForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 items-end">
-                
                 <div class="flex flex-col">
                     <label class="text-sm font-semibold text-slate-700 mb-2">Product Name</label>
-                    <input type="text" id="name" required placeholder="e.g. Fanta Orange" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 transition-colors">
+                    <input type="text" id="name" required placeholder="e.g. Fanta Orange" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5">
                 </div>
                 
                 <div class="flex flex-col">
                     <label class="text-sm font-semibold text-slate-700 mb-2">Price (RWF)</label>
-                    <input type="number" id="price" required placeholder="0" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 transition-colors">
+                    <input type="number" id="price" required placeholder="0" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5">
                 </div>
                 
                 <div class="flex flex-col">
                     <label class="text-sm font-semibold text-slate-700 mb-2">Category</label>
-                    <select id="category" required class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 transition-colors">
+                    <select id="category" required class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5">
                         <option value="Dairy">Dairy</option>
                         <option value="Bakery">Bakery</option>
                         <option value="Produce">Produce</option>
@@ -58,15 +56,15 @@
 
                 <div class="flex flex-col">
                     <label class="text-sm font-semibold text-slate-700 mb-2">Stock Level</label>
-                    <input type="number" id="stock" required placeholder="Quantity" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5 transition-colors">
+                    <input type="number" id="stock" required placeholder="Quantity" class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-2.5">
                 </div>
 
                 <div class="flex flex-col">
                     <label class="text-sm font-semibold text-slate-700 mb-2">Product Image</label>
-                    <input type="file" id="image" accept="image/*" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 transition-colors cursor-pointer">
+                    <input type="file" id="image" accept="image/*" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 cursor-pointer">
                 </div>
 
-                <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg text-sm px-5 py-3 text-center shadow-md hover:shadow-lg transition-all lg:col-span-5 mt-2">
+                <button type="submit" id="submitBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg text-sm px-5 py-3 text-center shadow-md hover:shadow-lg transition-all lg:col-span-5 mt-2">
                     + Save Product to Inventory
                 </button>
             </form>
@@ -76,12 +74,12 @@
             <div class="flex justify-between items-end mb-6">
                 <div>
                     <h2 class="text-2xl font-bold text-slate-800">Current Inventory</h2>
-                    <p class="text-sm text-slate-500 mt-1">Manage your store's products</p>
+                    <p class="text-sm text-slate-500 mt-1">Manage, edit, or delete your store's products</p>
                 </div>
             </div>
             
             <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                </div>
+            </div>
         </div>
 
     </div>
@@ -90,7 +88,15 @@
         const API_URL = 'http://localhost:5000/api/products';
         const productForm = document.getElementById('productForm');
         const productsGrid = document.getElementById('productsGrid');
+        
+        // Edit Mode Variables
+        let editingProductId = null;
+        const formTitle = document.getElementById('formTitle');
+        const submitBtn = document.getElementById('submitBtn');
+        const cancelEditBtn = document.getElementById('cancelEditBtn');
+        const formContainer = document.getElementById('formContainer');
 
+        // 1. READ: Fetch all products
         async function fetchProducts() {
             try {
                 const response = await fetch(API_URL);
@@ -105,7 +111,6 @@
 
                 products.forEach(product => {
                     const card = document.createElement('div');
-                    // Premium Card Styling
                     card.className = 'bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col';
                     
                     let imageUrl = 'https://via.placeholder.com/300x300?text=No+Image';
@@ -114,7 +119,7 @@
                         imageUrl = `http://localhost:5000/uploads/${cleanFileName}`;
                     }
 
-                    // Upgraded Card HTML Structure
+                    // Card HTML (Now with Edit and Delete buttons side-by-side)
                     card.innerHTML = `
                         <div class="h-48 w-full bg-slate-50 p-4 flex items-center justify-center overflow-hidden border-b border-slate-100 relative">
                             <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-slate-700 text-xs font-bold px-2.5 py-1 rounded-md shadow-sm border border-slate-100 z-10">
@@ -133,12 +138,14 @@
                             <h3 class="font-bold text-slate-800 text-lg mb-1 leading-tight line-clamp-2">${product.name}</h3>
                             <p class="text-emerald-600 font-extrabold text-xl mt-auto pt-2">${product.price} <span class="text-sm font-semibold text-slate-400">RWF</span></p>
                             
-                            <button onclick="deleteProduct('${product._id}')" class="mt-4 w-full bg-slate-50 hover:bg-red-50 text-slate-500 hover:text-red-600 border border-slate-200 hover:border-red-200 font-semibold rounded-xl text-sm px-4 py-2 transition-colors duration-200 flex justify-center items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
-                                Delete
-                            </button>
+                            <div class="grid grid-cols-2 gap-2 mt-4">
+                                <button onclick="startEdit('${product._id}', '${product.name.replace(/'/g, "\\'")}', ${product.price}, '${product.category}', ${product.stock})" class="w-full bg-slate-50 hover:bg-blue-50 text-slate-500 hover:text-blue-600 border border-slate-200 hover:border-blue-200 font-semibold rounded-xl text-sm px-2 py-2 transition-colors duration-200">
+                                    Edit
+                                </button>
+                                <button onclick="deleteProduct('${product._id}')" class="w-full bg-slate-50 hover:bg-red-50 text-slate-500 hover:text-red-600 border border-slate-200 hover:border-red-200 font-semibold rounded-xl text-sm px-2 py-2 transition-colors duration-200">
+                                    Delete
+                                </button>
+                            </div>
                         </div>
                     `;
                     productsGrid.appendChild(card);
@@ -148,6 +155,7 @@
             }
         }
 
+        // 2. CREATE & UPDATE: Handle Form Submission
         productForm.addEventListener('submit', async (e) => {
             e.preventDefault(); 
             const formData = new FormData();
@@ -162,22 +170,61 @@
             }
 
             try {
-                const response = await fetch(API_URL, {
-                    method: 'POST',
+                // Determine if we are POSTing (Create) or PUTing (Update)
+                const method = editingProductId ? 'PUT' : 'POST';
+                const endpoint = editingProductId ? `${API_URL}/${editingProductId}` : API_URL;
+
+                const response = await fetch(endpoint, {
+                    method: method,
                     body: formData 
                 });
 
                 if (response.ok) {
-                    productForm.reset(); 
-                    fetchProducts(); 
+                    resetFormState(); // Clear the form and reset buttons
+                    fetchProducts(); // Refresh the grid
                 } else {
-                    alert('Error adding product');
+                    alert('Error saving product');
                 }
             } catch (error) {
                 console.error('Error:', error);
             }
         });
 
+        // 3. Setup Edit Mode
+        window.startEdit = (id, name, price, category, stock) => {
+            editingProductId = id;
+            
+            // Fill the form with the existing data
+            document.getElementById('name').value = name;
+            document.getElementById('price').value = price;
+            document.getElementById('category').value = category;
+            document.getElementById('stock').value = stock;
+            
+            // Change the UI to look like an Edit form
+            formTitle.textContent = 'Edit Product';
+            formContainer.classList.add('border-blue-300', 'ring-4', 'ring-blue-50');
+            submitBtn.textContent = '💾 Update Product';
+            submitBtn.className = 'bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm px-5 py-3 text-center shadow-md hover:shadow-lg transition-all lg:col-span-5 mt-2';
+            cancelEditBtn.classList.remove('hidden');
+            
+            // Scroll to the top so the user sees the form
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // Cancel Edit Mode
+        cancelEditBtn.addEventListener('click', resetFormState);
+
+        function resetFormState() {
+            editingProductId = null;
+            productForm.reset();
+            formTitle.textContent = 'Add New Product';
+            formContainer.classList.remove('border-blue-300', 'ring-4', 'ring-blue-50');
+            submitBtn.textContent = '+ Save Product to Inventory';
+            submitBtn.className = 'bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg text-sm px-5 py-3 text-center shadow-md hover:shadow-lg transition-all lg:col-span-5 mt-2';
+            cancelEditBtn.classList.add('hidden');
+        }
+
+        // 4. DELETE
         async function deleteProduct(id) {
             if(confirm('Are you sure you want to remove this item from the inventory?')) {
                 try {
@@ -194,6 +241,7 @@
             }
         }
 
+        // Initial Load
         fetchProducts();
     </script>
 </body>
